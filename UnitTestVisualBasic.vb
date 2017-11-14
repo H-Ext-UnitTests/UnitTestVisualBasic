@@ -383,20 +383,20 @@ Namespace UnitTestCSharp
                     If [boolean] <> Addon_API.e_boolean.[TRUE] Then
                         Throw New ArgumentException()
                     End If
-                    If Not pIUtil.m_findSubStrFirstW(MatterStr, matterStr__1.ToString()) Then
+                    If Not pIUtil.m_findSubStrFirstW(matterStr__1.ToString(), MatterStr) Then
                         Throw New ArgumentException()
                     End If
-                    If pIUtil.m_findSubStrFirstW(MattarStr, matterStr__1.ToString()) Then
+                    If pIUtil.m_findSubStrFirstW(matterStr__1.ToString(), MattarStr) Then
                         Throw New ArgumentException()
                     End If
                     [boolean] = pIUtil.m_shiftStrW(matterStr__1, 1, 1, 3, True)
                     If [boolean] <> Addon_API.e_boolean.[TRUE] Then
                         Throw New ArgumentException()
                     End If
-                    If Not pIUtil.m_findSubStrFirstW(MattarStr, matterStr__1.ToString()) Then
+                    If Not pIUtil.m_findSubStrFirstW(matterStr__1.ToString(), MattarStr) Then
                         Throw New ArgumentException()
                     End If
-                    If pIUtil.m_findSubStrFirstW(MatterStr, matterStr__1.ToString()) Then
+                    If pIUtil.m_findSubStrFirstW(matterStr__1.ToString(), MatterStr) Then
                         Throw New ArgumentException()
                     End If
 
@@ -407,20 +407,20 @@ Namespace UnitTestCSharp
                     If [boolean] <> Addon_API.e_boolean.[TRUE] Then
                         Throw New ArgumentException()
                     End If
-                    If Not pIUtil.m_findSubStrFirstA(MatterStr, matterStr__1.ToString()) Then
+                    If Not pIUtil.m_findSubStrFirstA(matterStr__1.ToString(), MatterStr) Then
                         Throw New ArgumentException()
                     End If
-                    If pIUtil.m_findSubStrFirstA(MattarStr, matterStr__1.ToString()) Then
+                    If pIUtil.m_findSubStrFirstA(matterStr__1.ToString(), MattarStr) Then
                         Throw New ArgumentException()
                     End If
                     [boolean] = pIUtil.m_shiftStrA(matterStr__1, 1, 1, 3, True)
                     If [boolean] <> Addon_API.e_boolean.[TRUE] Then
                         Throw New ArgumentException()
                     End If
-                    If Not pIUtil.m_findSubStrFirstA(MattarStr, matterStr__1.ToString()) Then
+                    If Not pIUtil.m_findSubStrFirstA(matterStr__1.ToString(), MattarStr) Then
                         Throw New ArgumentException()
                     End If
-                    If pIUtil.m_findSubStrFirstA(MatterStr, matterStr__1.ToString()) Then
+                    If pIUtil.m_findSubStrFirstA(matterStr__1.ToString(), MatterStr) Then
                         Throw New ArgumentException()
                     End If
 
