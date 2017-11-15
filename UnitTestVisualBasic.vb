@@ -978,6 +978,12 @@ Namespace UnitTestCSharp
                     If Not pICommand.m_load_from_file(hash, eaoLoadFileStr, plI, Addon_API.MSG_PROTOCOL.MP_RCON) Then
                         Throw New ArgumentException()
                     End If
+
+                    ' Proper remove command when done testing.
+                    If Not pICommand.m_delete(hash, eao_testExecutePtr, eaoTestExecuteStr) Then
+                        Throw New ArgumentException()
+                    End If
+
                     MessageBox.Show("ICommand API has passed unit test.", "PASSED - ICommand", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
                     Throw New ArgumentException()
@@ -1531,7 +1537,7 @@ Namespace UnitTestCSharp
         End Sub
 #If EXT_HKTIMER Then
         <DllExport("EXTOnTimerExecute", CallingConvention:=CallingConvention.Cdecl)>
-        Public Shared Sub EXTOnTimerExecute(id As UInt32)
+        Public Shared Function EXTOnTimerExecute(id As UInt32, count As UInt32) As <MarshalAs(UnmanagedType.I1)> Boolean
             Try
                 If TimerID(0) = id Then
                     If TimerTickStart = 0 Then
@@ -1579,7 +1585,8 @@ Namespace UnitTestCSharp
             Catch generatedExceptionName As ArgumentException
                 MessageBox.Show("ITimer API has failed unit test.", "ERROR - ITimer", MessageBoxButtons.OK, MessageBoxIcon.[Error])
             End Try
-        End Sub
+            Return True
+        End Function
         <DllExport("EXTOnTimerCancel", CallingConvention:=CallingConvention.Cdecl)>
         Public Shared Sub EXTOnTimerCancel(id As UInt32)
             If TimerID(0) = id Then
