@@ -1073,13 +1073,13 @@ Namespace UnitTestCSharp
                         Throw New ArgumentException()
                     End If
                     Dim plITest As New Addon_API.PlayerInfo(), plITest2 As New Addon_API.PlayerInfo()
-                    If pIPlayer.m_get_m_index(2, plITest) Then
+                    If pIPlayer.m_get_m_index(2, plITest, True) Then
                         Throw New ArgumentException()
                     End If
-                    If pIPlayer.m_get_m_index(1, plITest) Then
+                    If pIPlayer.m_get_m_index(1, plITest, True) Then
                         Throw New ArgumentException()
                     End If
-                    If Not pIPlayer.m_get_m_index(0, plITest) Then
+                    If Not pIPlayer.m_get_m_index(0, plITest, True) Then
                         Throw New ArgumentException()
                     End If
                     If pIPlayer.m_get_id(200, plITest2) Then
@@ -1270,7 +1270,7 @@ Namespace UnitTestCSharp
             Try
                 If pIAdmin.isNotNull() AndAlso pIPlayer.isNotNull() Then
                     Dim plIMockup As New Addon_API.PlayerInfo()
-                    If Not pIPlayer.m_get_m_index(0, plIMockup) Then
+                    If Not pIPlayer.m_get_m_index(0, plIMockup, True) Then
                         Throw New ArgumentException()
                     End If
 
