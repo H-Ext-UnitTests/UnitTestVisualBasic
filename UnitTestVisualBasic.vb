@@ -720,7 +720,7 @@ Namespace UnitTestCSharp
                         Throw New ArgumentException()
                     End If
                     retCode = 0
-                    recheckICIniFileDataExists:
+recheckICIniFileDataExists:
                     If pICIniFile.m_section_exist(sectors.sect_name1) Then
                         Throw New ArgumentException()
                     End If
@@ -737,35 +737,35 @@ Namespace UnitTestCSharp
                         Throw New ArgumentException()
                     End If
 
-                    If pICIniFile.m_key_exist(str1_0, sectors.sect_name1) Then
+                    If pICIniFile.m_key_exist(sectors.sect_name1, str1_0) Then
                         Throw New ArgumentException()
                     End If
-                    If pICIniFile.m_key_exist(str1_1, sectors.sect_name2) Then
+                    If pICIniFile.m_key_exist(sectors.sect_name2, str1_1) Then
                         Throw New ArgumentException()
                     End If
-                    If pICIniFile.m_key_exist(str1_0, sectors.sect_name3) Then
+                    If pICIniFile.m_key_exist(sectors.sect_name3, str1_0) Then
                         Throw New ArgumentException()
                     End If
-                    If pICIniFile.m_key_exist(str1_2, sectors.sect_name4) Then
+                    If pICIniFile.m_key_exist(sectors.sect_name4, str1_2) Then
                         Throw New ArgumentException()
                     End If
-                    If pICIniFile.m_key_exist(str1_3, sectors.sect_name5) Then
+                    If pICIniFile.m_key_exist(sectors.sect_name5, str1_3) Then
                         Throw New ArgumentException()
                     End If
 
-                    If Not pICIniFile.m_value_set(str1_0, firstUnitTestCStr, sectors.sect_name1) Then
+                    If Not pICIniFile.m_value_set(sectors.sect_name1, str1_0, firstUnitTestCStr) Then
                         Throw New ArgumentException()
                     End If
-                    If Not pICIniFile.m_value_set(str1_1, firstUnitTestCStr, sectors.sect_name2) Then
+                    If Not pICIniFile.m_value_set(sectors.sect_name2, str1_1, firstUnitTestCStr) Then
                         Throw New ArgumentException()
                     End If
-                    If Not pICIniFile.m_value_set(str1_0, firstUnitTestCStr, sectors.sect_name3) Then
+                    If Not pICIniFile.m_value_set(sectors.sect_name3, str1_0, firstUnitTestCStr) Then
                         Throw New ArgumentException()
                     End If
-                    If pICIniFile.m_value_set(str1_2, firstUnitTestCStr, sectors.sect_name4) Then
+                    If pICIniFile.m_value_set(sectors.sect_name4, str1_2, firstUnitTestCStr) Then
                         Throw New ArgumentException()
                     End If
-                    If pICIniFile.m_value_set(str1_3, firstUnitTestCStr, sectors.sect_name5) Then
+                    If pICIniFile.m_value_set(sectors.sect_name5, str1_3, firstUnitTestCStr) Then
                         Throw New ArgumentException()
                     End If
                     retCode += 1
@@ -824,26 +824,26 @@ Namespace UnitTestCSharp
                         Throw New ArgumentException()
                     End If
 
-                    If Not pICIniFile.m_key_exist(str1_0, sectors.sect_name1) Then
+                    If Not pICIniFile.m_key_exist(sectors.sect_name1, str1_0) Then
                         Throw New ArgumentException()
                     End If
-                    If Not pICIniFile.m_key_exist(str1_1, sectors.sect_name2) Then
+                    If Not pICIniFile.m_key_exist(sectors.sect_name2, str1_1) Then
                         Throw New ArgumentException()
                     End If
-                    If pICIniFile.m_key_exist(str1_0, sectors.sect_name3) Then
+                    If pICIniFile.m_key_exist(sectors.sect_name3, str1_0) Then
                         Throw New ArgumentException()
                     End If
-                    If pICIniFile.m_key_exist(str1_2, sectors.sect_name4) Then
+                    If pICIniFile.m_key_exist(sectors.sect_name4, str1_2) Then
                         Throw New ArgumentException()
                     End If
-                    If pICIniFile.m_key_exist(str1_3, sectors.sect_name5) Then
+                    If pICIniFile.m_key_exist(sectors.sect_name5, str1_3) Then
                         Throw New ArgumentException()
                     End If
 
-                    If Not pICIniFile.m_value_set(str1_0, firstUnitTestCStr, sectors.sect_name1) Then
+                    If Not pICIniFile.m_value_set(sectors.sect_name1, str1_0, firstUnitTestCStr) Then
                         Throw New ArgumentException()
                     End If
-                    If Not pICIniFile.m_key_exist(str1_0, sectors.sect_name1) Then
+                    If Not pICIniFile.m_key_exist(sectors.sect_name1, str1_0) Then
                         Throw New ArgumentException()
                     End If
 
@@ -851,10 +851,10 @@ Namespace UnitTestCSharp
                         Throw New ArgumentException()
                     End If
 
-                    If Not pICIniFile.m_key_delete(str1_0, sectors.sect_name1) Then
+                    If Not pICIniFile.m_key_delete(sectors.sect_name1, str1_0) Then
                         Throw New ArgumentException()
                     End If
-                    If pICIniFile.m_key_exist(str1_0, sectors.sect_name1) Then
+                    If pICIniFile.m_key_exist(sectors.sect_name1, str1_0) Then
                         Throw New ArgumentException()
                     End If
 
@@ -862,7 +862,7 @@ Namespace UnitTestCSharp
                         Throw New ArgumentException()
                     End If
 
-                    If Not pICIniFile.m_key_exist(str1_0, sectors.sect_name1) Then
+                    If Not pICIniFile.m_key_exist(sectors.sect_name1, str1_0) Then
                         Throw New ArgumentException()
                     End If
 
@@ -879,13 +879,86 @@ Namespace UnitTestCSharp
                         'Does not required -1 after Length
                         Throw New ArgumentException()
                     End If
+
                     'retCode++; //Is not required.
-                    Do
-                        retCode -= 1
-                        If contentStr(CInt(retCode)) <> iniFileDataStr(CInt(retCode)) Then
-                            Throw New ArgumentException()
-                        End If
-                    Loop While retCode <> 0
+
+                    If Not compareString(contentStr, iniFileDataStr, retCode) Then
+                        Throw New ArgumentException()
+                    End If
+
+                    ' Begin 0.5.3.4 Feature
+                    Dim section_name As New StringBuilder(Addon_API.ICIniFileClass.INIFILESECTIONMAX)
+                    Dim key_name As New StringBuilder(Addon_API.ICIniFileClass.INIFILEKEYMAX)
+                    Dim value_name As New StringBuilder(Addon_API.ICIniFileClass.INIFILEVALUEMAX)
+                    Dim ini_sec_count As UInteger = pICIniFile.m_section_count()
+                    If ini_sec_count <> 3 Then
+                        Throw New ArgumentException()
+                    End If
+
+                    Dim ini_key_count As UInteger
+                    ' Section 0 test
+                    If Not pICIniFile.m_section_index(0, section_name) Then
+                        Throw New ArgumentException()
+                    End If
+
+                    If Not compareString(sectors.sect_name1, section_name.ToString(), UInteger.MaxValue) Then
+                        Throw New ArgumentException()
+                    End If
+                    ini_key_count = pICIniFile.m_key_count(section_name.ToString())
+                    If ini_key_count <> 1 Then
+                        Throw New ArgumentException()
+                    End If
+
+                    ' Section 0 key 0 test
+                    If Not pICIniFile.m_key_index(section_name.ToString(), 0, key_name, value_name) Then
+                        Throw New ArgumentException()
+                    End If
+                    If Not compareString(str1_0, key_name.ToString(), UInteger.MaxValue) Then
+                        Throw New ArgumentException()
+                    End If
+                    If Not compareString(firstUnitTestCStr, value_name.ToString(), UInteger.MaxValue) Then
+                        Throw New ArgumentException()
+                    End If
+
+                    ' Section 1 test
+                    If Not pICIniFile.m_section_index(1, section_name) Then
+                        Throw New ArgumentException()
+                    End If
+
+                    If Not compareString(sectors.sect_name2, section_name.ToString(), UInteger.MaxValue) Then
+                        Throw New ArgumentException()
+                    End If
+                    ini_key_count = pICIniFile.m_key_count(section_name.ToString())
+                    If ini_key_count <> 1 Then
+                        Throw New ArgumentException()
+                    End If
+
+                    ' Section 1 key 0 test
+                    If Not pICIniFile.m_key_index(section_name.ToString(), 0, key_name, value_name) Then
+                        Throw New ArgumentException()
+                    End If
+                    If Not compareString(str1_1, key_name.ToString(), UInteger.MaxValue) Then
+                        Throw New ArgumentException()
+                    End If
+                    If Not compareString(firstUnitTestCStr, value_name.ToString(), UInteger.MaxValue) Then
+                        Throw New ArgumentException()
+                    End If
+
+                    ' Section 2 test
+                    If Not pICIniFile.m_section_index(2, section_name) Then
+                        Throw New ArgumentException()
+                    End If
+
+                    If Not compareString(sectors.sect_name3, section_name.ToString(), UInteger.MaxValue) Then
+                        Throw New ArgumentException()
+                    End If
+                    ini_key_count = pICIniFile.m_key_count(section_name.ToString())
+                    If ini_key_count <> 0 Then
+                        Throw New ArgumentException()
+                    End If
+
+                    ' End 0.5.3.4 Feature
+
                     If Not pICIniFile.m_delete_file(iniFileStr) Then
                         Throw New ArgumentException()
                     End If
@@ -1598,5 +1671,26 @@ Namespace UnitTestCSharp
             End If
         End Sub
 #End If
+        Private Shared Function compareString(str1 As String, str2 As String, length As UInteger) As Addon_API.EAO_RETURN
+            If length = UInteger.MaxValue Then
+                length = 0
+                If str1.Length <> str2.Length Then
+                    Return False
+                End If
+                While str1.Length < length
+                    If str1(CInt(length)) <> str2(CInt(length)) Then
+                        Return False
+                    End If
+                End While
+            Else
+                Do
+                    length -= 1
+                    If str1(CInt(length)) <> str2(CInt(length)) Then
+                        Return False
+                    End If
+                Loop While length <> 0
+            End If
+            Return True
+        End Function
     End Class
 End Namespace
