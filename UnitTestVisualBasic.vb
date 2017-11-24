@@ -1,28 +1,32 @@
 ﻿
-'List of API support
+' List of API support
 
-'#Const EXT_IHALOENGINE = 1
-'#Const EXT_IOBJECT = 1
-'#Const EXT_IPLAYER = 1
-'#Const EXT_IADMIN = 1
+' List of EXTs API support for all modes
+
+'#Const EXT_IUTIL = 1
 '#Const EXT_ICOMMAND = 1
-
-'#Const EXT_IDATABASE = 1           //Not included in this UnitTest.
-'#Const EXT_IDATABASESTATEMENT = 1  //Not included in this UnitTest.
-'#Const EXT_HKDATABASE = 1          //Not included in this UnitTest.
-
 '#Const EXT_ICINIFILE = 1
-
 '#Const EXT_ITIMER = 1
 '#Const EXT_HKTIMER = 1
 
-'#Const EXT_IUTIL = 1
+' List of EXTs API support for mp mode only
 
-'Future API support
-'#Const EXT_INETWORK
-'#Const EXT_ISOUND
-'#Const EXT_IDIRECTX9
-'#Const EXT_HKEXTERNAL
+'#Const EXT_IHALOENGINE = 1
+'#Const EXT_IOBJECT = 1      ' Require EXT_IUTIL
+'#Const EXT_IPLAYER = 1      ' Require EXT_IOBJECT; If define EXT_IADMIN, EXT_IPLAYER test will Not process
+'#Const EXT_IADMIN = 1       ' Require EXT_IUTIL
+
+' Not included in this UnitTest.
+'#Const EXT_IDATABASE = 1
+'#Const EXT_IDATABASESTATEMENT = 1
+'#Const EXT_HKDATABASE = 1
+
+' Future API support
+
+'#Const EXT_INETWORK = 1            ' Will require mp mode test And possible client?
+'#Const EXT_ISOUND = 1              ' Require client side test only.
+'#Const EXT_IDIRECTX9 = 1           ' Require client side test only
+'#Const EXT_HKEXTERNAL = 1          ' TBD
 
 #If DO_NOT_INCLUDE_THIS Then
 addon_info EXTPluginInfo = { "UnitTest Visual Basic", "1.0.0.0",
