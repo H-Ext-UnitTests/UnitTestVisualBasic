@@ -1140,7 +1140,7 @@ recheckICIniFileDataExists:
 #End If
 #End Region
 #Region "IPlayer test section"
-#If EXT_IPLAYER AndAlso Not EXT_IADMIN Then
+#If EXT_IPLAYER AndAlso EXT_IADMIN = 0 Then
             Dim pIPlayer As Addon_API.IPlayer = Addon_API.[Interface].getIPlayer(hash)
             Try
                 If pIPlayer.isNotNull() Then
@@ -1279,7 +1279,8 @@ recheckICIniFileDataExists:
                         Throw New ArgumentException()
                     End If
                     Dim banID As UInteger, banID2 As UInteger 'Test CD hash key (un)ban verification
-                    If (banID = pIPlayer.m_ban_CD_key_get_id(plITest.plEx.CDHashW)) = 0 Then
+                    banID = pIPlayer.m_ban_CD_key_get_id(plITest.plEx.CDHashW)
+                    If banID = 0 Then
                         Throw New ArgumentException()
                     End If
                     If Not pIPlayer.m_unban_id(banID) Then
@@ -1289,14 +1290,16 @@ recheckICIniFileDataExists:
                     If pIPlayer.m_ban_CD_key(plITest.plEx.CDHashW, gmtm) <> Addon_API.e_boolean.[TRUE] Then
                         Throw New ArgumentException()
                     End If
-                    If (banID2 = pIPlayer.m_ban_CD_key_get_id(plITest.plEx.CDHashW)) = 0 Then
+                    banID2 = pIPlayer.m_ban_CD_key_get_id(plITest.plEx.CDHashW)
+                    If banID2 = 0 Then
                         Throw New ArgumentException()
                     End If
                     If banID <> banID2 Then
                         Throw New ArgumentException()
                     End If
                     'Test IP Address (un)ban verification
-                    If (banID = pIPlayer.m_ban_ip_get_id(plITest.plEx.IP_Addr)) = 0 Then
+                    banID = pIPlayer.m_ban_ip_get_id(plITest.plEx.IP_Addr)
+                    If banID = 0 Then
                         Throw New ArgumentException()
                     End If
                     If Not pIPlayer.m_unban_id(banID) Then
@@ -1306,7 +1309,8 @@ recheckICIniFileDataExists:
                     If pIPlayer.m_ban_ip(plITest.plEx.IP_Addr, gmtm) <> Addon_API.e_boolean.[TRUE] Then
                         Throw New ArgumentException()
                     End If
-                    If (banID2 = pIPlayer.m_ban_ip_get_id(plITest.plEx.IP_Addr)) = 0 Then
+                    banID2 = pIPlayer.m_ban_ip_get_id(plITest.plEx.IP_Addr)
+                    If banID2 = 0 Then
                         Throw New ArgumentException()
                     End If
                     If banID <> banID2 Then
@@ -1345,6 +1349,7 @@ recheckICIniFileDataExists:
 #If EXT_IPLAYER = 0 Then
             Dim "EXT_IPLAYER Is required For testing EXT_IADMIN" As String
 #End If
+            Dim pIPlayer As Addon_API.IPlayer = Addon_API.[Interface].getIPlayer(hash)
             Dim pIAdmin As Addon_API.IAdmin = Addon_API.[Interface].getIAdmin(hash)
             Try
                 If pIAdmin.isNotNull() AndAlso pIPlayer.isNotNull() Then
