@@ -41,7 +41,7 @@ addon_info EXTPluginInfo = { "UnitTest Visual Basic", "1.0.0.0",
 #End If
 
 
-' * Verification list as of 0.5.3.3
+' * Verification list as of 0.5.3.4
 ' *
 ' * EXT_IHALOENGINE          - Passed (except a few functions are not included in test.)
 ' * EXT_IOBJECT              - Passed (except a few functions are not included in test.)
